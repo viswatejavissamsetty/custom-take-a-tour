@@ -42,3 +42,35 @@
     }
   }
 }
+
+::ng-deep .tour-click-blocker {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+  display: block;
+  z-index: 1102;
+}
+
+::ng-deep .tour-fade {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1099;
+  background-color: #000;
+  opacity: 0.25;
+}
+
+::ng-deep .tour-highlight {
+  position: absolute;
+  z-index: 1100;
+  background: #fff;
+  transform: translate3d(0, 0, 0);
+  transition: all 1s ease;
+}

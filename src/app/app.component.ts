@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import * as $ from 'jquery';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -15,56 +14,39 @@ export class AppComponent implements OnInit {
     {
       selector: '#block1',
       title: 'Test Title 1',
-      description: 'Test dsecription content',
+      description: 'Test description content',
     },
     {
       selector: '#block5',
       title: 'Test Title 5',
-      description: 'Test dsecription content',
+      description: 'Test description content',
     },
     {
       selector: '#block2',
       title: 'Test Title 2',
-      description: 'Test dsecription content',
+      description: 'Test description content',
     },
     {
       selector: '#block6',
       title: 'Test Title 6',
-      description: 'Test dsecription content',
+      description: 'Test description content',
     },
     {
       selector: '#block3',
       title: 'Test Title 3',
-      description: 'Test dsecription content',
+      description: 'Test description content',
     },
     {
       selector: '#block7',
       title: 'Test Title 7',
-      description: 'Test dsecription content',
+      description: 'Test description content',
     },
     {
       selector: '#block4',
       title: 'Test Title 4',
-      description: 'Test dsecription content',
+      description: 'Test description content',
     },
   ];
 
   ngOnInit(): void {}
-
-  createPoperDom(totalCount: number) {
-    $(`
-      <div id="tour-poper" class="my-popper popper tour-new-popper">
-        <div class="content" id="content"></div>
-        <div class="controls">
-          <button id="next" class="btn btn-primary">Next</button>
-          <button id="next" class="btn btn-primary">Prev</button>
-          <button id="next" class="btn btn-primary">End</button>
-        </div>
-        <div>
-          <span id="current-count">0</span> /
-          <span id="current-count">${totalCount}</span>
-        </div>
-      </div>
-    `).appendTo('body');
-  }
 }

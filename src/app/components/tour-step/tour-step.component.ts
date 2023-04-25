@@ -42,7 +42,7 @@ export class TourStepComponent implements OnInit, OnDestroy {
     const element = $(currentStep.selector);
 
     element
-      .addClass('tour-new-highlight')[0]
+      .addClass('tour-highlight')[0]
       .scrollIntoView({ behavior: 'auto', block: 'start', inline: 'start' });
 
     this.title = currentStep.title;
@@ -62,7 +62,7 @@ export class TourStepComponent implements OnInit, OnDestroy {
     const element = $(currentStep.selector);
 
     element
-      .addClass('tour-new-highlight')[0]
+      .addClass('tour-highlight')[0]
       .scrollIntoView({ behavior: 'smooth', block: 'start' });
 
     this.title = currentStep.title;
@@ -82,7 +82,7 @@ export class TourStepComponent implements OnInit, OnDestroy {
 
   clearTourHeilighting() {
     this.steps.map((step) => {
-      $(step.selector).removeClass('tour-new-highlight');
+      $(step.selector).removeClass('tour-highlight');
     });
   }
 
@@ -94,12 +94,12 @@ export class TourStepComponent implements OnInit, OnDestroy {
 
     $('body').addClass('tour-active');
 
-    $(`<div id="tour-new-fade" class="tour-new-fade"></div>`).appendTo('body');
+    $(`<div id="tour-fade" class="tour-fade"></div>`).appendTo('body');
   }
 
   deactivateTour() {
     $('#tour-click-blocker').remove();
-    $('#tour-new-fade').remove();
+    $('#tour-fade').remove();
     $('body').removeClass('tour-active');
   }
 
