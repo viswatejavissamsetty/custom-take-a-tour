@@ -1,0 +1,43 @@
+.tour-new-popper {
+  position: absolute;
+  will-change: transform;
+  top: 0px;
+  left: 0px;
+  z-index: 1200;
+  min-width: 320px;
+  text-align: left;
+  border-radius: 8px;
+  padding: 20px;
+  background: #fff;
+  transform: translate3d(0, 0, 0);
+  margin-top: 20px;
+
+  .header {
+    background-color: gray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .title {
+      font-size: large;
+    }
+  }
+
+  .content {
+    font-size: 13px;
+  }
+
+  .controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .stepper {
+    background-color: grey;
+    p {
+      text-align: center;
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<div class="tour-new-popper" [style.transform]="transform" *ngIf="totalSteps && currentStepNumber" #tourElement>
+  <div class="header">
+    <div class="title">{{title}}</div>
+    <button class="btn btn-outline-primary rounded-circle" (click)="end()">X</button>
+  </div>
+  <div class="content">
+    {{description}}
+  </div>
+  <div class="controls">
+    <div class="btn btn-primary" (click)="prev()" *ngIf="currentStepNumber !== 1">Prev</div>
+    <div class="btn btn-primary" (click)="next()" *ngIf="currentStepNumber !== totalSteps">Next</div>
+    <div class="btn btn-primary" (click)="end()" *ngIf="currentStepNumber === totalSteps">End</div>
+  </div>
+  <div class="stepper">
+    <p>{{currentStepNumber}} of {{totalSteps}}</p>
+  </div>
+</div>
