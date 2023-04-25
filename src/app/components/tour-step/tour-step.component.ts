@@ -40,12 +40,13 @@ export class TourStepComponent implements OnInit, OnDestroy {
     const currentStep = this.steps[this.currentStepNumber - 1];
 
     const element = $(currentStep.selector);
-    this.title = currentStep.title;
-    this.description = currentStep.description;
 
     element
       .addClass('tour-new-highlight')[0]
-      .scrollIntoView({ behavior: 'smooth', block: 'start' });
+      .scrollIntoView({ behavior: 'auto', block: 'start', inline: 'start' });
+
+    this.title = currentStep.title;
+    this.description = currentStep.description;
 
     this.transform = `translate(${((element.innerWidth() || 0) - 300) / 2}px,
     ${element.position().top + element[0].clientHeight}px
@@ -59,12 +60,13 @@ export class TourStepComponent implements OnInit, OnDestroy {
     const currentStep = this.steps[this.currentStepNumber - 1];
 
     const element = $(currentStep.selector);
-    this.title = currentStep.title;
-    this.description = currentStep.description;
 
     element
       .addClass('tour-new-highlight')[0]
       .scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    this.title = currentStep.title;
+    this.description = currentStep.description;
 
     this.transform = `translate3d(${((element.innerWidth() || 0) - 300) / 2}px,
     ${element.position().top + element[0].clientHeight}px,

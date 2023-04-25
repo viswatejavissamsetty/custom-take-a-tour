@@ -18,8 +18,18 @@ export class AppComponent implements OnInit {
       description: 'Test dsecription content',
     },
     {
+      selector: '#block5',
+      title: 'Test Title 5',
+      description: 'Test dsecription content',
+    },
+    {
       selector: '#block2',
       title: 'Test Title 2',
+      description: 'Test dsecription content',
+    },
+    {
+      selector: '#block6',
+      title: 'Test Title 6',
       description: 'Test dsecription content',
     },
     {
@@ -28,13 +38,13 @@ export class AppComponent implements OnInit {
       description: 'Test dsecription content',
     },
     {
-      selector: '#block4',
-      title: 'Test Title 4',
+      selector: '#block7',
+      title: 'Test Title 7',
       description: 'Test dsecription content',
     },
     {
-      selector: '#block5',
-      title: 'Test Title 5',
+      selector: '#block4',
+      title: 'Test Title 4',
       description: 'Test dsecription content',
     },
   ];
