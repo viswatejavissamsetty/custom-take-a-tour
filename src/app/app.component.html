@@ -109,4 +109,4 @@
   </p>
 </div>
 
-<app-tour-step [steps]="tourSteps"></app-tour-step>
+<app-tour-step [steps]="tourSteps" [show]="true" (onEnd)="eventEnd($event)"></app-tour-step>

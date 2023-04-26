@@ -1,4 +1,13 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import * as $ from 'jquery';
 
 @Component({
@@ -6,18 +15,19 @@ import * as $ from 'jquery';
   templateUrl: './tour-step.component.html',
   styleUrls: ['./tour-step.component.scss'],
 })
-export class TourStepComponent implements OnInit, OnDestroy {
-  title = '';
+export class TourStepComponent implements OnInit, OnDestroy, AfterViewInit {
   description = '';
   currentStepNumber = 0;
   totalSteps = 0;
   transform = 'translate(0, 0)';
 
+  @Input('show') show = false;
+  @Output() onEnd = new EventEmitter();
+
   @ViewChild('tourElement') tourbox!: HTMLDivElement;
 
   @Input('steps') steps: Array<{
     selector: string;
-    title: string;
     description: string;
   }> = [];
 
@@ -33,6 +43,10 @@ export class TourStepComponent implements OnInit, OnDestroy {
     this.next();
   }
 
+  ngAfterViewInit(): void {
+    $(`.tour-popper`).addClass('top');
+  }
+
   next() {
     this.clearTourHeilighting();
 
@@ -45,12 +59,14 @@ export class TourStepComponent implements OnInit, OnDestroy {
       .addClass('tour-highlight')[0]
       .scrollIntoView({ behavior: 'auto', block: 'start', inline: 'start' });
 
-    this.title = currentStep.title;
     this.description = currentStep.description;
 
-    this.transform = `translate(${((element.innerWidth() || 0) - 300) / 2}px,
-    ${element.position().top + element[0].clientHeight}px
-    )`;
+    const parameters = this.getparameters(element);
+
+    $(`.tour-popper`).removeClass('top bottom left right');
+    $(`.tour-popper`).addClass(parameters.lightBox.add);
+
+    this.transform = `translate(${parameters.element.left}, ${parameters.element.top})`;
   }
 
   prev() {
@@ -65,19 +81,21 @@ export class TourStepComponent implements OnInit, OnDestroy {
       .addClass('tour-highlight')[0]
       .scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-    this.title = currentStep.title;
     this.description = currentStep.description;
 
-    this.transform = `translate3d(${((element.innerWidth() || 0) - 300) / 2}px,
-    ${element.position().top + element[0].clientHeight}px,
-    0px
-    )`;
+    const parameters = this.getparameters(element);
+
+    $(`.tour-popper`).removeClass('top bottom left right');
+    $(`.tour-popper`).addClass(parameters.lightBox.add);
+
+    this.transform = `translate(${parameters.element.left}, ${parameters.element.top})`;
   }
 
   end() {
     this.clearTourHeilighting();
     this.deactivateTour();
-    this.totalSteps = 0;
+    this.show = false;
+    this.onEnd.emit();
   }
 
   clearTourHeilighting() {
@@ -101,6 +119,31 @@ export class TourStepComponent implements OnInit, OnDestroy {
     $('#tour-click-blocker').remove();
     $('#tour-fade').remove();
     $('body').removeClass('tour-active');
+  }
+
+  getparameters(element: JQuery<HTMLElement>) {
+    console.log(
+      element[0].clientHeight + element.position().top,
+      $('body')[0].offsetHeight
+    );
+
+    const isBottom =
+      element[0].clientHeight + element.position().top >=
+      $('body')[0].offsetHeight;
+
+    const left =
+      element[0].offsetLeft + ((element.innerWidth() || 0) - 300) / 2;
+    const top = isBottom
+      ? element.position().top - element[0].offsetHeight + 10
+      : element.position().top + element[0].clientHeight;
+
+    return {
+      element: {
+        left: `${left}px`,
+        top: `${top}px`,
+      },
+      lightBox: { add: isBottom ? 'bottom' : 'top' },
+    };
   }
 
   ngOnDestroy(): void {
