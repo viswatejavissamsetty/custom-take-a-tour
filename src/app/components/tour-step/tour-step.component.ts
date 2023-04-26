@@ -122,11 +122,6 @@ export class TourStepComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   getparameters(element: JQuery<HTMLElement>) {
-    console.log(
-      element[0].clientHeight + element.position().top,
-      $('body')[0].offsetHeight
-    );
-
     const isBottom =
       element[0].clientHeight + element.position().top >=
       $('body')[0].offsetHeight;
